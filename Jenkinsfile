@@ -4,7 +4,6 @@ pipeline {
     environment {
         DOCKER_IMAGE = 'movie-dating-frontend'
         DOCKER_TAG = '${BUILD_NUMBER}'
-        DB_CREDS = credentials('DB_CREDENTIALS')
         VITE_API_URL = credentials('${VITE_API_URL}')
         VITE_WEBSOCKET = credentials('${VITE_WEBSOCKET}')
         VITE_TMDB_API_URL = credentials('${VITE_TMDB_API_URL}')
