@@ -1,4 +1,4 @@
-FROM node:22 AS build
+FROM node:lts-alpine AS build
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
@@ -8,6 +8,6 @@ ARG VITE_TMDB_API_URL
 RUN VITE_API_URL=$VITE_API_URL VITE_TMDB_API_URL=$VITE_TMDB_API_URL npm run build
 
 FROM nginx:alpine
-COPY --from=build /app/build /usr/share/nginx/html
+COPY --from=build-stage /app/dist /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
